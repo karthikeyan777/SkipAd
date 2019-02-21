@@ -1,7 +1,7 @@
 {
   "name": "Skip Ad - youtube",
   "version": "1.0",
-  "description": "Skip Ad after 4 seconds",
+  "description": "Skip Ad - on Starting",
   "permissions": ["storage","declarativeContent", "tabs", "activeTab","https://www.youtube.com/"],
   "background": {
     "persistent": false,
