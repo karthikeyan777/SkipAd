@@ -12,16 +12,12 @@ chrome.runtime.onInstalled.addListener(function(details) {
   });
 });
   
-  chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-    console.log(tab.url);
-    if(changeInfo.status == "complete" && tab.url.includes("www.youtube.com")) {
-      console.log(tab.url);
-      chrome.storage.local.set({noAds: 0});
-      chrome.tabs.executeScript(null, {
-        file: 'contentScript.js'
-      });
-    }
-
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+  if(changeInfo.status == "complete" && tab.url.includes("www.youtube.com")) {
+    chrome.tabs.executeScript({
+      file: 'contentScript.js'
+    });
+  }
 });
 
 
