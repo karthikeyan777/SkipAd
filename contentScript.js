@@ -1,14 +1,11 @@
 noAds = 1;
-chrome.storage.local.get(['noAds'], function(result) {
-  noAds = result.noAds;
-});
-async function getTargetNode(i) {
+async function getTargetNode() {
   await sleepOneSecond();
-  let targetNode = document.getElementsByClassName("ytp-ad-simple-ad-badge")[i];
+  let targetNode = document.getElementsByClassName("ytp-ad-simple-ad-badge")[0];
   if (noAds > 5) {
     return;
   }
-  return targetNode ? observerDomChanges(i) : getTargetNode(i);
+  return targetNode ? observerDomChanges() : getTargetNode();
 }
 
 function sleepOneSecond() {
@@ -19,12 +16,12 @@ function sleepOneSecond() {
     }, 1000);
   });
 }
-getTargetNode(0);
+getTargetNode();
 
-function observerDomChanges(i) {
+function observerDomChanges() {
   let targetNodes = document.getElementsByClassName("ytp-ad-simple-ad-badge")[0];
   if (targetNodes) {
-    document.getElementsByTagName('video')[i].currentTime=document.getElementsByTagName('video')[i].duration;
-    getTargetNode(1);
+    document.getElementsByTagName('video')[0].currentTime=document.getElementsByTagName('video')[0].duration;
+    getTargetNode();
   }
 }
